@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 
 using SearchAreaWeb.Search.Models;
+using SearchAreaWeb.Utils;
+using System.Threading.Tasks;
 
 namespace SearchAreaWeb.Controllers
 {
@@ -23,8 +25,10 @@ namespace SearchAreaWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(SearchModel model)
+        public async Task<ActionResult> Create(SearchModel model)
         {
+            await Task.Run(() => ParseDBUtils.Test());
+
             return RedirectToAction("Index");
         }
     }
