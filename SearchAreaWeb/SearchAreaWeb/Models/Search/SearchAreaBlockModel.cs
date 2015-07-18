@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SearchAreaWeb.Models
+namespace SearchAreaWeb.Models.Search
 {
     public class SearchAreaBlockModel
     {

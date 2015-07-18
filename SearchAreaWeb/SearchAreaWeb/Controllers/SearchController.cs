@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Threading.Tasks;
 
 using SearchAreaWeb.Search.Models;
 using SearchAreaWeb.Utils;
-using System.Threading.Tasks;
+using SearchAreaWeb.Controllers.SearchArea;
+using SearchAreaWeb.Controllers.SearchArea.Impl;
 
 namespace SearchAreaWeb.Controllers
 {
@@ -27,7 +29,12 @@ namespace SearchAreaWeb.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(SearchModel model)
         {
-            await Task.Run(() => ParseDBUtils.Test());
+            ISearchAreaFactory searchAreaFactory = new SearchAreaFactory();
+
+            var northeastGeoPoint = new Parse.ParseGeoPoint(model.NortheastLongitude, model.NortheastLatitude);
+            var southwestGeopoint = new Parse.ParseGeoPoint(model.NortheastLongitude, model.NortheastLatitude);
+
+            var searchAreaModel = searchAreaFactory.GenerateSearchArea(model.Name, (AreaType)model.AreaType, northeastGeoPoint, southwestGeopoint);
 
             return RedirectToAction("Index");
         }
