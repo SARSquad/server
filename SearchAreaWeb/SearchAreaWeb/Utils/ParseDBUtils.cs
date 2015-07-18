@@ -9,7 +9,7 @@ using SearchAreaWeb.Models.Search;
 namespace SearchAreaWeb.Utils
 {
     public static class ParseDBUtils
-    {
+    { 
         public static void Initialize()
         {
             ParseClient.Initialize("SAlhWqn4ERwfsVT7MHjky4PLiURrI7tY1K3xF6Sa", 
@@ -22,10 +22,10 @@ namespace SearchAreaWeb.Utils
 
             searchArea["SearchAreaID"] = searchAreaModel.Id;
             searchArea["Location"] = searchAreaModel.Location;
-            searchArea["NorthEastLng"] = searchAreaModel.NorthEastLongitude;
-            searchArea["NorthEastLat"] = searchAreaModel.NorthEastLatitude;
-            searchArea["SouthWestLng"] = searchAreaModel.NorthEastLongitude;
-            searchArea["SouthWestLat"] = searchAreaModel.NorthEastLatitude;
+            searchArea["NorthEastLng"] = searchAreaModel.NortheastLongitude;
+            searchArea["NorthEastLat"] = searchAreaModel.NortheastLatitude;
+            searchArea["SouthWestLng"] = searchAreaModel.SouthwestLongitude;
+            searchArea["SouthWestLat"] = searchAreaModel.SouthwestLatitude;
             searchArea["isComlete"] = searchAreaModel.IsComplete;
 
             await searchArea.SaveAsync();

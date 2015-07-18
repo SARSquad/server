@@ -29,6 +29,7 @@ namespace SearchAreaWeb.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(CreateSearchFormModel model)
         {
+            ParseDBUtils.Initialize();
             ISearchAreaFactory searchAreaFactory = new SearchAreaFactory();
 
             var northeastGeoPoint = new Parse.ParseGeoPoint(model.NortheastLongitude, model.NortheastLatitude);

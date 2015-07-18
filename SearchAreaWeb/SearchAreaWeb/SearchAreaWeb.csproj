@@ -176,10 +176,10 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Search\SearchAreaBlockModel.cs" />
     <Compile Include="Models\Search\SearchAreaModel.cs" />
-    <Compile Include="Models\Search\SearchModel.cs" />
+    <Compile Include="Models\Search\CreateSearchFormModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Utils\AreaType.cs" />
+    <Compile Include="Utils\AreaTypes.cs" />
     <Compile Include="Utils\ParseDBUtils.cs" />
     <Compile Include="Utils\Verify.cs" />
   </ItemGroup>

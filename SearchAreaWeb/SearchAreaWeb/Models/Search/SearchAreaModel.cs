@@ -25,10 +25,10 @@ namespace SearchAreaWeb.Models.Search
             Name = name;
             AreaType = areaType;
             Location = location;
-            NorthEastLongitude = neLng;
-            NorthEastLatitude = neLat;
-            SouthWestLongitude = swLng;
-            SouthWestLatitude = swLat;
+            NortheastLongitude = neLng;
+            NortheastLatitude = neLat;
+            SouthwestLongitude = swLng;
+            SouthwestLatitude = swLat;
             IsComplete = isComplete;
         }
 
@@ -36,10 +36,10 @@ namespace SearchAreaWeb.Models.Search
         public string Name { get; private set; }
         public AreaTypes AreaType { get; private set; }
         public ParseGeoPoint Location { get; private set; }
-        public double NorthEastLongitude { get; private set; }
-        public double NorthEastLatitude { get; private set; }
-        public double SouthWestLongitude { get; private set; }
-        public double SouthWestLatitude { get; private set; }
+        public double NortheastLongitude { get; private set; }
+        public double NortheastLatitude { get; private set; }
+        public double SouthwestLongitude { get; private set; }
+        public double SouthwestLatitude { get; private set; }
         public bool IsComplete { get; private set; }
     }
 }
