@@ -5,26 +5,36 @@ using System.Web;
 
 namespace SearchAreaWeb.Search.Models
 {
-    public class SearchModel
+    public class CreateSearchFormModel
     {
-        public SearchModel()
+        public CreateSearchFormModel()
         {
 
         }
 
-        public SearchModel(string name, string areaType, string northeastGeopoint, string soutwestGeopoint)
+        public CreateSearchFormModel(string name, string areaType, string northEastLongitude, string northEastLatitude, string southWestLongitude, string southWestLatitude)
         {
-            if (name == null)
-
             Name = name;
             AreaType = areaType;
-            NortheastGeopoint = northeastGeopoint;
-            SouthwestGeopoint = soutwestGeopoint;
+            
+            try
+            {
+                NortheastLongitude = double.Parse(northEastLongitude);
+                NortheastLatitude = double.Parse(northEastLatitude);
+                SouthwestLongitude = double.Parse(southWestLongitude);
+                SoutheestLatitude = double.Parse(southWestLatitude);
+            }
+            catch (FormatException e)
+            {
+                // TODO: Handle this
+            }
         }
 
         public string Name { get; set; }
         public string AreaType { get; set; }
-        public string NortheastGeopoint { get; set; }
-        public string SouthwestGeopoint { get; set; }
+        public double NortheastLongitude { get; private set; }
+        public double NortheastLatitude { get; private set; }
+        public double SouthwestLongitude { get; private set; }
+        public double SoutheestLatitude { get; private set; }
     }
 }

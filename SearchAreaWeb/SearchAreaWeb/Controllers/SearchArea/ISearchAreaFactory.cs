@@ -12,7 +12,7 @@ namespace SearchAreaWeb.Controllers.SearchArea
 {
     public interface ISearchAreaFactory
     {
-        public SearchAreaModel GenerateSearchArea(string name, AreaType areaType, ParseGeoPoint northeastGeopoint, ParseGeoPoint southwestGeopoint);
-        public List<SearchAreaBlockModel> GenerateBlocks(SearchAreaModel searchArea);
+        SearchAreaModel GenerateSearchArea(string name, AreaType areaType, ParseGeoPoint northeastGeopoint, ParseGeoPoint southwestGeopoint);
+        List<SearchAreaBlockModel> GenerateBlocks(SearchAreaModel searchArea);
     }
 }

@@ -27,14 +27,14 @@ namespace SearchAreaWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(SearchModel model)
+        public async Task<ActionResult> Create(CreateSearchFormModel model)
         {
             ISearchAreaFactory searchAreaFactory = new SearchAreaFactory();
 
             var northeastGeoPoint = new Parse.ParseGeoPoint(model.NortheastLongitude, model.NortheastLatitude);
             var southwestGeopoint = new Parse.ParseGeoPoint(model.NortheastLongitude, model.NortheastLatitude);
 
-            var searchAreaModel = searchAreaFactory.GenerateSearchArea(model.Name, (AreaType)model.AreaType, northeastGeoPoint, southwestGeopoint);
+            var searchAreaModel = searchAreaFactory.GenerateSearchArea(model.Name, (AreaType)Enum.Parse(typeof(AreaType), model.AreaType), northeastGeoPoint, southwestGeopoint);
 
             return RedirectToAction("Index");
         }
