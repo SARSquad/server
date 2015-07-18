@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SearchAreaWeb.Utils
 {
-    public enum AreaType
+    public enum AreaTypes
     {
         Field,
         Forest,

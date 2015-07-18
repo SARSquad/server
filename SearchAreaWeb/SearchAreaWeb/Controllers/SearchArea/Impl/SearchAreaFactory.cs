@@ -11,7 +11,7 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
 {
     public class SearchAreaFactory : ISearchAreaFactory
     {
-        public Models.Search.SearchAreaModel GenerateSearchArea(string name, AreaType areaType, ParseGeoPoint northeastGeopoint, ParseGeoPoint southwestGeopoint)
+        public Models.Search.SearchAreaModel GenerateSearchArea(string name, AreaTypes areaType, ParseGeoPoint northeastGeopoint, ParseGeoPoint southwestGeopoint)
         {
             Guid id = Guid.NewGuid();
             string id_str = id.ToString();
@@ -21,7 +21,7 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
             double swLng = southwestGeopoint.Longitude;
             double swLat = southwestGeopoint.Latitude;
 
-            SearchAreaModel searchAreaModel = new SearchAreaModel(id_str, name, northeastGeopoint, neLng, neLat, swLng, swLat, false);
+            SearchAreaModel searchAreaModel = new SearchAreaModel(id_str, name, areaType, northeastGeopoint, neLng, neLat, swLng, swLat, false);
 
             return searchAreaModel;
         }

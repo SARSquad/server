@@ -32,9 +32,10 @@ namespace SearchAreaWeb.Controllers
             ISearchAreaFactory searchAreaFactory = new SearchAreaFactory();
 
             var northeastGeoPoint = new Parse.ParseGeoPoint(model.NortheastLongitude, model.NortheastLatitude);
-            var southwestGeopoint = new Parse.ParseGeoPoint(model.NortheastLongitude, model.NortheastLatitude);
+            var southwestGeopoint = new Parse.ParseGeoPoint(model.SouthwestLongitude, model.SouthwestLatitude);
 
-            var searchAreaModel = searchAreaFactory.GenerateSearchArea(model.Name, (AreaType)Enum.Parse(typeof(AreaType), model.AreaType), northeastGeoPoint, southwestGeopoint);
+            var searchAreaModel = searchAreaFactory.GenerateSearchArea(model.Name, (AreaTypes)Enum.Parse(typeof(AreaTypes), model.AreaType), northeastGeoPoint, southwestGeopoint);
+            ParseDBUtils.StoreSearchArea(searchAreaModel);
 
             return RedirectToAction("Index");
         }

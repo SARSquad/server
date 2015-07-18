@@ -22,7 +22,7 @@ namespace SearchAreaWeb.Search.Models
                 NortheastLongitude = double.Parse(northEastLongitude);
                 NortheastLatitude = double.Parse(northEastLatitude);
                 SouthwestLongitude = double.Parse(southWestLongitude);
-                SoutheestLatitude = double.Parse(southWestLatitude);
+                SouthwestLatitude = double.Parse(southWestLatitude);
             }
             catch (FormatException e)
             {
@@ -35,6 +35,6 @@ namespace SearchAreaWeb.Search.Models
         public double NortheastLongitude { get; private set; }
         public double NortheastLatitude { get; private set; }
         public double SouthwestLongitude { get; private set; }
-        public double SoutheestLatitude { get; private set; }
+        public double SouthwestLatitude { get; private set; }
     }
 }

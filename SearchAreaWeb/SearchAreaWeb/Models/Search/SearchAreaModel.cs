@@ -15,7 +15,7 @@ namespace SearchAreaWeb.Models.Search
         {
         }
 
-        public SearchAreaModel(string id, string name, ParseGeoPoint location, double neLng, double neLat, double swLng, double swLat, bool isComplete)
+        public SearchAreaModel(string id, string name, AreaTypes areaType, ParseGeoPoint location, double neLng, double neLat, double swLng, double swLat, bool isComplete)
         {
             Verify.IsNotNullOrEmpty(id, "id");
             Verify.IsNotNullOrEmpty(name, "name");
@@ -23,6 +23,7 @@ namespace SearchAreaWeb.Models.Search
 
             Id = id;
             Name = name;
+            AreaType = areaType;
             Location = location;
             NorthEastLongitude = neLng;
             NorthEastLatitude = neLat;
@@ -33,6 +34,7 @@ namespace SearchAreaWeb.Models.Search
 
         public string Id { get; private set; }
         public string Name { get; private set; }
+        public AreaTypes AreaType { get; private set; }
         public ParseGeoPoint Location { get; private set; }
         public double NorthEastLongitude { get; private set; }
         public double NorthEastLatitude { get; private set; }

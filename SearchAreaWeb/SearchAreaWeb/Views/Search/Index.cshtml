@@ -1,6 +1,4 @@
-﻿@model SearchAreaWeb.Search.Models.SearchModel
-
-@{
+﻿@{
     ViewBag.Title = "Search Home";
 }
 
@@ -24,12 +22,20 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="northeastGeopoint">Northeast Point</label>
-            <input name="NortheastGeopoint" type="text" class="form-control" id="northeastGeopoint" placeholder="Lat/Long">
+            <label for="northeastLongitude">Northeast Longitude</label>
+            <input name="NortheastLongitude" type="text" class="form-control" id="northeastLongitude" placeholder="Northeast corner longitude">
         </div>
         <div class="form-group">
-            <label for="southwestGeopoint">Northeast Point</label>
-            <input name="SouthwestGeopoint" type="text" class="form-control" id="southwestGeopoint" placeholder="Lat/Long">
+            <label for="northeastLatitude">Northeast Latitude</label>
+            <input name="NortheastLatitude" type="text" class="form-control" id="NortheastLatitude" placeholder="Northeast corner longitude">
+        </div>
+        <div class="form-group">
+            <label for="southwestLongitude">Southwest Longitude</label>
+            <input name="SouthwestLongitude" type="text" class="form-control" id="southwestLongitude" placeholder="Northeast corner longitude">
+        </div>
+        <div class="form-group">
+            <label for="southwestLatitude">Southwest Latitude</label>
+            <input name="SouthwestLatitude" type="text" class="form-control" id="southwestLatitude" placeholder="Northeast corner longitude">
         </div>
         <button type="submit" class="btn btn-default">Create</button>
     </form>   

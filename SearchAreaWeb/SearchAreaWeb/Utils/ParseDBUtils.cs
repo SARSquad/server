@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using Parse;
 
+using SearchAreaWeb.Models.Search;
+
 namespace SearchAreaWeb.Utils
 {
     public static class ParseDBUtils
@@ -14,11 +16,19 @@ namespace SearchAreaWeb.Utils
                                    "hmS5OMLDGUfeLDwOF7EWoNgMcamuYhgABkq7N4Qy");
         }
 
-        public async static void Test()
+        public async static void StoreSearchArea(SearchAreaModel searchAreaModel)
         {
-            var testObject = new ParseObject("TestObject");
-            testObject["foo"] = "bar";
-            await testObject.SaveAsync();
+            ParseObject searchArea = new ParseObject("SearchArea");
+
+            searchArea["SearchAreaID"] = searchAreaModel.Id;
+            searchArea["Location"] = searchAreaModel.Location;
+            searchArea["NorthEastLng"] = searchAreaModel.NorthEastLongitude;
+            searchArea["NorthEastLat"] = searchAreaModel.NorthEastLatitude;
+            searchArea["SouthWestLng"] = searchAreaModel.NorthEastLongitude;
+            searchArea["SouthWestLat"] = searchAreaModel.NorthEastLatitude;
+            searchArea["isComlete"] = searchAreaModel.IsComplete;
+
+            await searchArea.SaveAsync();
         }
     }
 }
