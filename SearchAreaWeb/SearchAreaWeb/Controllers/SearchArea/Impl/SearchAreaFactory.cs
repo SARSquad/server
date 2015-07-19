@@ -32,12 +32,12 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
             String terrainType = "Open";
 
             //Calculates the "X" distance for the search area in meters.
-            double horizontalDistance = calculate(searchArea.NorthEastLatitude, 
-                searchArea.NorthEastLongitude, searchArea.SouthWestLatitude ,searchArea.NorthEastLongitude);
+            double horizontalDistance = calculate(searchArea.NortheastLatitude, 
+                searchArea.NortheastLongitude, searchArea.SouthwestLatitude ,searchArea.NortheastLongitude);
 
             //Calculates the "Y" distance for the search area in meters.
-            double verticalDistance = calculate(searchArea.NorthEastLatitude,
-                searchArea.NorthEastLongitude, searchArea.NorthEastLatitude, searchArea.NorthEastLongitude);
+            double verticalDistance = calculate(searchArea.NortheastLatitude,
+                searchArea.NortheastLongitude, searchArea.NortheastLatitude, searchArea.NortheastLongitude);
 
             //Assignes the vertical and horizontal values of the blocks to blockHeight and blockWidth based on the entered terrainType.
             double blockHeight;
@@ -77,7 +77,7 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
                 }
             }
 
-
+            return null;
 
         }
 

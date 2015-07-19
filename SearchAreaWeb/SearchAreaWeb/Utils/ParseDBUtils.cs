@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Parse;
+using System.Threading.Tasks;
 
 using SearchAreaWeb.Models.Search;
+
+using Parse;
 
 namespace SearchAreaWeb.Utils
 {
@@ -16,19 +18,20 @@ namespace SearchAreaWeb.Utils
                                    "hmS5OMLDGUfeLDwOF7EWoNgMcamuYhgABkq7N4Qy");
         }
 
-        public async static void StoreSearchArea(SearchAreaModel searchAreaModel)
+        public static void StoreSearchArea(SearchAreaModel searchAreaModel)
         {
             ParseObject searchArea = new ParseObject("SearchArea");
 
             searchArea["SearchAreaID"] = searchAreaModel.Id;
+            searchArea["Name"] = searchAreaModel.Name;
             searchArea["Location"] = searchAreaModel.Location;
             searchArea["NorthEastLng"] = searchAreaModel.NortheastLongitude;
             searchArea["NorthEastLat"] = searchAreaModel.NortheastLatitude;
             searchArea["SouthWestLng"] = searchAreaModel.SouthwestLongitude;
             searchArea["SouthWestLat"] = searchAreaModel.SouthwestLatitude;
-            searchArea["isComlete"] = searchAreaModel.IsComplete;
+            searchArea["IsComplete"] = searchAreaModel.IsComplete;
 
-            await searchArea.SaveAsync();
+            searchArea.SaveAsync();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace SearchAreaWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(CreateSearchFormModel model)
+        public ActionResult Create(CreateSearchFormModel model)
         {
             ParseDBUtils.Initialize();
             ISearchAreaFactory searchAreaFactory = new SearchAreaFactory();
