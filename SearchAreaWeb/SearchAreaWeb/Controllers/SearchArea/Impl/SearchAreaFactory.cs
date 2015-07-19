@@ -28,24 +28,15 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
         {
 
             //Calculates the "X" distance for the search area in meters.
-<<<<<<< HEAD
             double horizontalDistance = calculate(searchArea.NortheastLatitude,
                 searchArea.NortheastLongitude, searchArea.NortheastLatitude, searchArea.SouthwestLongitude);
-=======
-            double horizontalDistance = calculate(searchArea.NortheastLatitude, 
-                searchArea.NortheastLongitude, searchArea.NortheastLatitude ,searchArea.SouthwestLongitude);
->>>>>>> 9b599ba81b0a039a1a2dbae7a06d9c110831616e
 
             //Calculates the "Y" distance for the search area in meters.
             double verticalDistance = calculate(searchArea.NortheastLatitude,
                 searchArea.NortheastLongitude, searchArea.SouthwestLatitude, searchArea.NortheastLongitude);
 
             //Calculates NE Corner Coordinates
-<<<<<<< HEAD
             Tuple<double, double> NWCorner = new Tuple<double, double>(searchArea.NortheastLatitude, searchArea.SouthwestLongitude);
-=======
-            Tuple<double,double> NWCorner = new Tuple<double,double>(searchArea.NortheastLatitude,searchArea.SouthwestLongitude);
->>>>>>> 9b599ba81b0a039a1a2dbae7a06d9c110831616e
 
             //Assignes the vertical and horizontal values of the blocks to blockHeight and blockWidth based on the entered terrainType.
             double blockHeight;
@@ -64,7 +55,7 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
                     blockHeight = 10;
                     blockWidth = 10;
                     break;
-                case AreaTypes.Mountains:
+                case AreaTypes.Mountains:s
                     blockHeight = 5;
                     blockWidth = 5;
                     break;
@@ -99,7 +90,6 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
                         //sets the array longitude to the first blocks longitude.
                         arrayLongitude = block0Coords.Item2;
                     }
-<<<<<<< HEAD
                     //A random ID and a Geopoint for the block is created.
                     Guid randomID = System.Guid.NewGuid();
                     string id = randomID.ToString();
@@ -111,17 +101,6 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
                     //implements longitude change
                     Tuple<double, double> horizChangeCoords = calculateDisplacement(arrayLatitude, arrayLongitude, blockWidth, 0);
                     arrayLongitude = horizChangeCoords.Item2;
-=======
-                    //Otherwise the standard longitude change is calculated and enacted.
-                    else
-                    {
-                        Tuple<double,double> horizChangeCoords = calculateDisplacement(arrayLatitude,arrayLongitude,blockWidth,0);
-                        arrayLongitude = horizChangeCoords.Item2;
-                    }
-                    //A new searchAreaBlockModel is created in the curent cell.
-                    ParseGeoPoint arrayLocation = new ParseGeoPoint(arrayLatitude, arrayLongitude);
-                    blockArray[row, column] = new SearchAreaBlockModel(arrayLongitude,arrayLatitude, arrayLocation,row, column, id, false);
->>>>>>> 9b599ba81b0a039a1a2dbae7a06d9c110831616e
 
                 }
             }
@@ -136,6 +115,7 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
                 }
             }
             return lastList;
+
 
         }
 
