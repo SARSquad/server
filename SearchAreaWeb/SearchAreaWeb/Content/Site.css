@@ -46,6 +46,9 @@ textarea {
 .lighter {
     font-weight: 350;
 }
+label.error {
+    color: red;
+}
 
 .home-banner {
     height: 250px;

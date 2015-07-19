@@ -84,6 +84,7 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
                 }
                 for (int column = 0; column < numberOfYBlocks; column++)
                 {
+<<<<<<< HEAD
                     //if the end of the column is reached then the longitude is reset to the first blocks coordinates. 
                     if (column == 0)
                     {
@@ -93,6 +94,27 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
                     //A random ID and a Geopoint for the block is created.
                     Guid randomID = System.Guid.NewGuid();
                     string id = randomID.ToString();
+=======
+                    string id ="";
+                    if (row != 0)
+                    {
+                        Guid randomID = System.Guid.NewGuid();
+                        id = randomID.ToString();
+
+                        //if the end of the column is reached then the longitude is reset to the first blocks coordinates. 
+                        if (column == 0)
+                        {
+                            arrayLongitude = block0Coords.Item2;
+                        }
+                        //Otherwise the standard longitude change is calculated and enacted.
+                        else
+                        {
+                            Tuple<double, double> horizChangeCoords = calculateDisplacement(arrayLatitude, arrayLongitude, blockWidth, 0);
+                            arrayLongitude = horizChangeCoords.Item2;
+                        }
+                    }
+                    //A new searchAreaBlockModel is created in the curent cell.
+>>>>>>> master
                     ParseGeoPoint arrayLocation = new ParseGeoPoint(arrayLatitude, arrayLongitude);
 
                     //A new searchAreaBlockModel is created in the curent cell with all the given information.
