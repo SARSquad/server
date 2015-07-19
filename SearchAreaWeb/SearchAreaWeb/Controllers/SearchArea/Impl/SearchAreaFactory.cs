@@ -77,7 +77,12 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
                 }
             }
 
-            return null;
+            // test code delete later
+            List<SearchAreaBlockModel> testlist = new List<SearchAreaBlockModel>();
+            testlist.Add(new SearchAreaBlockModel(42, 42, new ParseGeoPoint(42, 42), 0, 0, "", false));
+            testlist.Add(new SearchAreaBlockModel(42.1, 42.1, new ParseGeoPoint(42.1, 42.1), 2, 2, "", true));
+            testlist.Add(new SearchAreaBlockModel(42.2, 42.2, new ParseGeoPoint(42.2, 42.2), 1, 1, "", false));
+            return testlist;
 
         }
 

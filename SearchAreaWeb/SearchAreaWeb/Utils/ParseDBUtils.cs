@@ -33,5 +33,26 @@ namespace SearchAreaWeb.Utils
 
             searchArea.SaveAsync();
         }
+
+        public static void StoreSearchAreaBlocks(string searchAreaId, List<SearchAreaBlockModel> searchAreaBlockModels)
+        {
+            List<ParseObject> searchAreaBlocks = new List<ParseObject>();
+
+            foreach(SearchAreaBlockModel blockModel in searchAreaBlockModels) 
+            {
+                ParseObject block = new ParseObject("Block");
+
+                block["Column"] = blockModel.Column;
+                block["Row"] = blockModel.Row;
+                block["Location"] = blockModel.Location;
+                block["SearchAreaID"] = searchAreaId.ToString();
+                block["IsComplete"] = searchAreaId.ToString();
+
+                searchAreaBlocks.Add(block);
+            }
+
+            ParseObject.SaveAllAsync(searchAreaBlocks);
+            
+        }
     }
 }
