@@ -55,7 +55,7 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
                     blockHeight = 10;
                     blockWidth = 10;
                     break;
-                case AreaTypes.Mountains:s
+                case AreaTypes.Mountains:
                     blockHeight = 5;
                     blockWidth = 5;
                     break;
@@ -97,7 +97,7 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
                     ParseGeoPoint arrayLocation = new ParseGeoPoint(arrayLatitude, arrayLongitude);
 
                     //A new searchAreaBlockModel is created in the curent cell with all the given information.
-                    blockArray[row, column] = new SearchAreaBlockModel(arrayLongitude, arrayLatitude, row, column, id, false);
+                    blockArray[row, column] = new SearchAreaBlockModel(arrayLongitude, arrayLatitude, arrayLocation, row, column, id, false);
 
                     //implements longitude change
                     Tuple<double, double> horizChangeCoords = calculateDisplacement(arrayLatitude, arrayLongitude, blockWidth, 0);

@@ -45,6 +45,8 @@ namespace SearchAreaWeb.Utils
                 block["Column"] = blockModel.Column;
                 block["Row"] = blockModel.Row;
                 block["Location"] = blockModel.Location;
+                block["Latitude"] = blockModel.Location.Latitude;
+                block["Longitude"] = blockModel.Location.Longitude;
                 block["SearchAreaID"] = searchAreaId.ToString();
                 block["IsComplete"] = blockModel.IsComplete;
 
