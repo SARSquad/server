@@ -24,20 +24,19 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
 
             return searchAreaModel;
         }
-
         public List<SearchAreaBlockModel> GenerateBlocks(SearchAreaModel searchArea)
         {
-            
+
             //Calculates the "X" distance for the search area in meters.
-            double horizontalDistance = calculate(searchArea.NorthEastLatitude, 
-                searchArea.NorthEastLongitude, searchArea.NorthEastLatitude ,searchArea.SouthWestLongitude);
+            double horizontalDistance = calculate(searchArea.NortheastLatitude,
+                searchArea.NortheastLongitude, searchArea.NortheastLatitude, searchArea.SouthwestLongitude);
 
             //Calculates the "Y" distance for the search area in meters.
-            double verticalDistance = calculate(searchArea.NorthEastLatitude,
-                searchArea.NorthEastLongitude, searchArea.SouthWestLatitude, searchArea.NorthEastLongitude);
+            double verticalDistance = calculate(searchArea.NortheastLatitude,
+                searchArea.NortheastLongitude, searchArea.SouthwestLatitude, searchArea.NortheastLongitude);
 
             //Calculates NE Corner Coordinates
-            Tuple<double,double> NWCorner = new Tuple<double,double>(searchArea.NorthEastLatitude,searchArea.SouthWestLongitude);
+            Tuple<double, double> NWCorner = new Tuple<double, double>(searchArea.NortheastLatitude, searchArea.SouthwestLongitude);
 
             //Assignes the vertical and horizontal values of the blocks to blockHeight and blockWidth based on the entered terrainType.
             double blockHeight;
@@ -45,20 +44,20 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
             switch (searchArea.AreaType)
             {
                 case AreaTypes.Field:
-                    blockHeight = verticalDistance / 50;
-                    blockWidth = horizontalDistance / 50;
+                    blockHeight = 50;
+                    blockWidth = 50;
                     break;
                 case AreaTypes.Forest:
-                    blockHeight = verticalDistance/25;
-                    blockWidth = horizontalDistance / 25;
+                    blockHeight = 25;
+                    blockWidth = 25;
                     break;
                 case AreaTypes.DenseForest:
-                    blockHeight = verticalDistance/10;
-                    blockWidth = horizontalDistance / 10;
+                    blockHeight = 10;
+                    blockWidth = 10;
                     break;
                 case AreaTypes.Mountains:
-                    blockHeight = verticalDistance / 5;
-                    blockWidth = horizontalDistance / 5;
+                    blockHeight = 5;
+                    blockWidth = 5;
                     break;
                 default:
                     blockHeight = 0;
@@ -68,7 +67,7 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
             //Calculates the number of blocks needed and creates an array with that ammount.
             int numberOfXBlocks = (int)Math.Ceiling(horizontalDistance / blockWidth);
             int numberOfYBlocks = (int)Math.Ceiling(verticalDistance / blockHeight);
-            SearchAreaBlockModel[,] blockArray = new SearchAreaBlockModel[numberOfXBlocks,numberOfYBlocks];
+            SearchAreaBlockModel[,] blockArray = new SearchAreaBlockModel[numberOfXBlocks, numberOfYBlocks];
 
             //creates a tuple with the coordinates for the first block.
             Tuple<double, double> block0Coords = calculateDisplacement(NWCorner.Item1, NWCorner.Item2, blockWidth / 2, -(blockHeight / 2));
@@ -77,30 +76,31 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
 
             for (int row = 0; row < numberOfXBlocks; row++)
             {
-                //if were not on the first row, a change in the vertical coordinates for the array occurs.
+                //if we're not on the first row, a change in the vertical coordinates for the array.
                 if (row != 0)
                 {
-                    Tuple<double,double> vertChangeCoords = calculateDisplacement(arrayLatitude,arrayLongitude,0,blockHeight);
+                    Tuple<double, double> vertChangeCoords = calculateDisplacement(arrayLatitude, arrayLongitude, 0, blockHeight);
                     arrayLatitude = vertChangeCoords.Item1;
                 }
-                for (int column = 1; column < numberOfYBlocks; column++)
+                for (int column = 0; column < numberOfYBlocks; column++)
                 {
-                    Guid randomID = System.Guid.NewGuid();
-                    string id = randomID.ToString();
-                    
                     //if the end of the column is reached then the longitude is reset to the first blocks coordinates. 
-                    if(column == 0)
+                    if (column == 0)
                     {
+                        //sets the array longitude to the first blocks longitude.
                         arrayLongitude = block0Coords.Item2;
                     }
-                    //Otherwise the standard longitude change is calculated and enacted.
-                    else
-                    {
-                        Tuple<double,double> horizChangeCoords = calculateDisplacement(arrayLatitude,arrayLongitude,blockWidth,0);
-                        arrayLongitude = horizChangeCoords.Item2;
-                    }
-                    //A new searchAreaBlockModel is created in the curent cell.
-                    blockArray[row, column] = new SearchAreaBlockModel(arrayLongitude,arrayLatitude , row, column, id, false);
+                    //A random ID and a Geopoint for the block is created.
+                    Guid randomID = System.Guid.NewGuid();
+                    string id = randomID.ToString();
+                    ParseGeoPoint arrayLocation = new ParseGeoPoint(arrayLatitude, arrayLongitude);
+
+                    //A new searchAreaBlockModel is created in the curent cell with all the given information.
+                    blockArray[row, column] = new SearchAreaBlockModel(arrayLongitude, arrayLatitude, arrayLocation, row, column, id, false);
+
+                    //implements longitude change
+                    Tuple<double, double> horizChangeCoords = calculateDisplacement(arrayLatitude, arrayLongitude, blockWidth, 0);
+                    arrayLongitude = horizChangeCoords.Item2;
 
                 }
             }
