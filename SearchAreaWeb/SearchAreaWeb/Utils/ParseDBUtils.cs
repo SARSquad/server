@@ -2,33 +2,57 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Parse;
+using System.Threading.Tasks;
 
 using SearchAreaWeb.Models.Search;
+
+using Parse;
 
 namespace SearchAreaWeb.Utils
 {
     public static class ParseDBUtils
-    {
+    { 
         public static void Initialize()
         {
             ParseClient.Initialize("SAlhWqn4ERwfsVT7MHjky4PLiURrI7tY1K3xF6Sa", 
                                    "hmS5OMLDGUfeLDwOF7EWoNgMcamuYhgABkq7N4Qy");
         }
 
-        public async static void StoreSearchArea(SearchAreaModel searchAreaModel)
+        public static void StoreSearchArea(SearchAreaModel searchAreaModel)
         {
             ParseObject searchArea = new ParseObject("SearchArea");
 
             searchArea["SearchAreaID"] = searchAreaModel.Id;
+            searchArea["Name"] = searchAreaModel.Name;
             searchArea["Location"] = searchAreaModel.Location;
-            searchArea["NorthEastLng"] = searchAreaModel.NorthEastLongitude;
-            searchArea["NorthEastLat"] = searchAreaModel.NorthEastLatitude;
-            searchArea["SouthWestLng"] = searchAreaModel.NorthEastLongitude;
-            searchArea["SouthWestLat"] = searchAreaModel.NorthEastLatitude;
-            searchArea["isComlete"] = searchAreaModel.IsComplete;
+            searchArea["NorthEastLng"] = searchAreaModel.NortheastLongitude;
+            searchArea["NorthEastLat"] = searchAreaModel.NortheastLatitude;
+            searchArea["SouthWestLng"] = searchAreaModel.SouthwestLongitude;
+            searchArea["SouthWestLat"] = searchAreaModel.SouthwestLatitude;
+            searchArea["IsComplete"] = searchAreaModel.IsComplete;
 
-            await searchArea.SaveAsync();
+            searchArea.SaveAsync();
+        }
+
+        public static void StoreSearchAreaBlocks(string searchAreaId, List<SearchAreaBlockModel> searchAreaBlockModels)
+        {
+            List<ParseObject> searchAreaBlocks = new List<ParseObject>();
+
+            foreach(SearchAreaBlockModel blockModel in searchAreaBlockModels) 
+            {
+                ParseObject block = new ParseObject("Block");
+
+                block["Column"] = blockModel.Column;
+                block["Row"] = blockModel.Row;
+                block["Location"] = blockModel.Location;
+                block["SearchAreaID"] = searchAreaId.ToString();
+                block["IsComplete"] = searchAreaId.ToString();
+
+                searchAreaBlocks.Add(block);
+            }
+
+            ParseObject.SaveAllAsync(searchAreaBlocks);
+            
         }
     }
 }

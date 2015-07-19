@@ -29,15 +29,15 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
         {
             
             //Calculates the "X" distance for the search area in meters.
-            double horizontalDistance = calculate(searchArea.NorthEastLatitude, 
-                searchArea.NorthEastLongitude, searchArea.NorthEastLatitude ,searchArea.SouthWestLongitude);
+            double horizontalDistance = calculate(searchArea.NortheastLatitude, 
+                searchArea.NortheastLongitude, searchArea.NortheastLatitude ,searchArea.SouthwestLongitude);
 
             //Calculates the "Y" distance for the search area in meters.
-            double verticalDistance = calculate(searchArea.NorthEastLatitude,
-                searchArea.NorthEastLongitude, searchArea.SouthWestLatitude, searchArea.NorthEastLongitude);
+            double verticalDistance = calculate(searchArea.NortheastLatitude,
+                searchArea.NortheastLongitude, searchArea.SouthwestLatitude, searchArea.NortheastLongitude);
 
             //Calculates NE Corner Coordinates
-            Tuple<double,double> NWCorner = new Tuple<double,double>(searchArea.NorthEastLatitude,searchArea.SouthWestLongitude);
+            Tuple<double,double> NWCorner = new Tuple<double,double>(searchArea.NortheastLatitude,searchArea.SouthwestLongitude);
 
             //Assignes the vertical and horizontal values of the blocks to blockHeight and blockWidth based on the entered terrainType.
             double blockHeight;
@@ -100,7 +100,8 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
                         arrayLongitude = horizChangeCoords.Item2;
                     }
                     //A new searchAreaBlockModel is created in the curent cell.
-                    blockArray[row, column] = new SearchAreaBlockModel(arrayLongitude,arrayLatitude , row, column, id, false);
+                    ParseGeoPoint arrayLocation = new ParseGeoPoint(arrayLatitude, arrayLongitude);
+                    blockArray[row, column] = new SearchAreaBlockModel(arrayLongitude,arrayLatitude, arrayLocation,row, column, id, false);
 
                 }
             }
@@ -115,7 +116,6 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
                 }
             }
             return lastList;
-
 
         }
 

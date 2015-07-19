@@ -27,8 +27,9 @@ namespace SearchAreaWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(CreateSearchFormModel model)
+        public ActionResult Create(CreateSearchFormModel model)
         {
+            ParseDBUtils.Initialize();
             ISearchAreaFactory searchAreaFactory = new SearchAreaFactory();
 
             var northeastGeoPoint = new Parse.ParseGeoPoint(model.NortheastLongitude, model.NortheastLatitude);
@@ -36,6 +37,9 @@ namespace SearchAreaWeb.Controllers
 
             var searchAreaModel = searchAreaFactory.GenerateSearchArea(model.Name, (AreaTypes)Enum.Parse(typeof(AreaTypes), model.AreaType), northeastGeoPoint, southwestGeopoint);
             ParseDBUtils.StoreSearchArea(searchAreaModel);
+
+            var searchAreaBlockModels = searchAreaFactory.GenerateBlocks(searchAreaModel);
+            ParseDBUtils.StoreSearchAreaBlocks(searchAreaModel.Id, searchAreaBlockModels);
 
             return RedirectToAction("Index");
         }

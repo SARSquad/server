@@ -1,12 +1,14 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #4DBCE9;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    max-width: 70%;
+    padding: 15px 30px;
+    background-color: #fff;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -14,4 +16,40 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+/* Background colors */
+.bg-lime {
+    background-color: #D1E751!important;
+}
+.bg-white {
+    background-color: #FFFFFF!important;
+}
+.bg-black {
+    background-color: #000000!important;
+}
+.bg-electric-blue {
+    background-color: #4DBCE9!important;
+}
+.bg-sky-blue {
+    background-color: #26ADE4!important;
+}
+
+/* Bootstrap overrides */
+.navbar-inverse {
+    background-color: #000000;
+}
+
+/* Text */
+.header {
+}
+.lighter {
+    font-weight: 350;
+}
+
+.home-banner {
+    height: 250px;
+    width: 100%;
+    background-image: url("images/search_banner.jpg");
+    background-size: cover;
 }
