@@ -46,12 +46,12 @@ namespace SearchAreaWeb.Utils
                 block["Row"] = blockModel.Row;
                 block["Location"] = blockModel.Location;
                 block["SearchAreaID"] = searchAreaId.ToString();
-                block["IsComplete"] = searchAreaId.ToString();
+                block["IsComplete"] = blockModel.IsComplete;
 
                 searchAreaBlocks.Add(block);
             }
 
-            ParseObject.SaveAllAsync(searchAreaBlocks);
+            ParseObject.SaveAllAsync<ParseObject>(searchAreaBlocks);
             
         }
     }

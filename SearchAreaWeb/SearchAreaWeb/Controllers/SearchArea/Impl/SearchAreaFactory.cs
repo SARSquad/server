@@ -83,21 +83,25 @@ namespace SearchAreaWeb.Controllers.SearchArea.Impl
                     Tuple<double,double> vertChangeCoords = calculateDisplacement(arrayLatitude,arrayLongitude,0,blockHeight);
                     arrayLatitude = vertChangeCoords.Item1;
                 }
-                for (int column = 1; column < numberOfYBlocks; column++)
+                for (int column = 0; column < numberOfYBlocks; column++)
                 {
-                    Guid randomID = System.Guid.NewGuid();
-                    string id = randomID.ToString();
-                    
-                    //if the end of the column is reached then the longitude is reset to the first blocks coordinates. 
-                    if(column == 0)
+                    string id ="";
+                    if (row != 0)
                     {
-                        arrayLongitude = block0Coords.Item2;
-                    }
-                    //Otherwise the standard longitude change is calculated and enacted.
-                    else
-                    {
-                        Tuple<double,double> horizChangeCoords = calculateDisplacement(arrayLatitude,arrayLongitude,blockWidth,0);
-                        arrayLongitude = horizChangeCoords.Item2;
+                        Guid randomID = System.Guid.NewGuid();
+                        id = randomID.ToString();
+
+                        //if the end of the column is reached then the longitude is reset to the first blocks coordinates. 
+                        if (column == 0)
+                        {
+                            arrayLongitude = block0Coords.Item2;
+                        }
+                        //Otherwise the standard longitude change is calculated and enacted.
+                        else
+                        {
+                            Tuple<double, double> horizChangeCoords = calculateDisplacement(arrayLatitude, arrayLongitude, blockWidth, 0);
+                            arrayLongitude = horizChangeCoords.Item2;
+                        }
                     }
                     //A new searchAreaBlockModel is created in the curent cell.
                     ParseGeoPoint arrayLocation = new ParseGeoPoint(arrayLatitude, arrayLongitude);

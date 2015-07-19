@@ -10,6 +10,8 @@ using SearchAreaWeb.Utils;
 using SearchAreaWeb.Controllers.SearchArea;
 using SearchAreaWeb.Controllers.SearchArea.Impl;
 
+using Parse;
+
 namespace SearchAreaWeb.Controllers
 {
     public class SearchController : Controller
@@ -32,8 +34,8 @@ namespace SearchAreaWeb.Controllers
             ParseDBUtils.Initialize();
             ISearchAreaFactory searchAreaFactory = new SearchAreaFactory();
 
-            var northeastGeoPoint = new Parse.ParseGeoPoint(model.NortheastLongitude, model.NortheastLatitude);
-            var southwestGeopoint = new Parse.ParseGeoPoint(model.SouthwestLongitude, model.SouthwestLatitude);
+            var northeastGeoPoint = new ParseGeoPoint(model.NortheastLatitude, model.NortheastLongitude);
+            var southwestGeopoint = new ParseGeoPoint(model.SouthwestLatitude, model.SouthwestLongitude);
 
             var searchAreaModel = searchAreaFactory.GenerateSearchArea(model.Name, (AreaTypes)Enum.Parse(typeof(AreaTypes), model.AreaType), northeastGeoPoint, southwestGeopoint);
             ParseDBUtils.StoreSearchArea(searchAreaModel);

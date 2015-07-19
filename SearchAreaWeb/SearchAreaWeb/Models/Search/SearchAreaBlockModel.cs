@@ -14,7 +14,7 @@ namespace SearchAreaWeb.Models.Search
         {
             Latitude = longitude;
             Longitude = latitude;
-            Location = Location;
+            Location = location;
             Row = row;
             Column = column;
             SearchAreaId = searchAreaId;
